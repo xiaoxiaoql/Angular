@@ -1,0 +1,20 @@
+<div>
+<!-- 侧边栏 -->
+		<div class='track' ng-show='trackbool'>
+			<span class='head_icon_con'><img ng-src="{{msg}}" alt="" class="head_icon"></span>
+			<p><span ng-click="loginShow()">{{loginStatus}}</span></p>
+			<ul>
+				<li><a href="#!/home/pageone" @click='toall("all")'>首页</a></li>
+				<li><a href="#!/home/mynews">我的消息</a></li>
+				<li><a href="#!/home/publicTopic">发布话题</a></li>
+				<li @click='joinmy()'>个人中心</li>
+				<li>关于</li>
+			</ul>
+		</div>
+		<div class='mask' ng-show='trackbool' ng-click='maskHide()' ></div>
+		<div class='login_win' ng-show='logoisShow'>
+			<p>Access Token</p>
+			<p><input type="text" ng-model='user'></p>
+			<p><button ng-click='loginClick()'>登录</button></p>
+		</div>
+	</div>

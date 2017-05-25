@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='demo'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+	<link rel="stylesheet" href="./css/base.css">
+	<link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+<div>
+	<ui-view></ui-view>
+</div>
+</body>
+<script src='js/angular.js'></script>
+<script src='js/ngPost.js'></script>
+<script src="js/angular-ui-router.js"></script>
+<!-- <script src='js/base.js'></script> -->
+<script src='js/controller.js'></script>
+<script src='js/router.js'></script>
+<script src="js/directive.js"></script>
+<script src="js/jquery-3.1.1.js"></script>
+<script>
+	var app=angular.module('demo',['MyModule','ui.router','controllers','directives','routers']);
+	//过滤器
+	app.filter('times',function(){
+		return function(values){
+			var now=new Date().getTime();
+			var createTime=new Date(values);
+			//时间差 秒
+			var offset=Math.floor((now-createTime)/1000);
+			//计算相差时 日数
+			var minValue=parseInt(offset/60)%60;
+			var hoursValue=parseInt(offset/60/60)%24;//时
+			var dayValue=parseInt(offset/60/60/24);//日
+			var monthValue=parseInt(offset/60/60/24/30);//月
+			var yearValue=parseInt(offset/60/60/24/30/12);//年
+			var timevalue='';
+			if(yearValue==0){
+				if(monthValue!=0){
+					timevalue=monthValue+'月前';
+				}else if(dayValue!=0){
+					timevalue=dayValue+'天前';
+				}else if(hoursValue!=0){
+					timevalue=hoursValue+'小时前';
+				}else{
+					timevalue=minValue+'分钟前';
+				}
+			}else{
+				timevalue=yearValue+'年前';
+			}
+			return timevalue;
+
+		}
+	})
+	app.filter('abc',function(){
+		return function(input,value){
+			switch(input){
+				case 'ask': return '问答';break;
+				case 'share': return '分享'; break;
+				case 'job': return '招聘';break;
+				case 'good':return '精华';break;
+				default:
+				return '置顶';
+			}
+		}
+	})
+	app.filter("html", function($sce) {
+		return function(input) {
+			return $sce.trustAsHtml(input)
+		}
+	})
+
+</script>
+</html>

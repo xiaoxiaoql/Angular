@@ -1,0 +1,12 @@
+<div class='title_list'>
+<!-- 列表 -->
+	<div class="a_list clear" ng-repeat='list in listarr|filter:{title:searchkey}' >
+	<div class='name_con'><a href="#" class='name'><img ng-src="{{list.author.avatar_url}}" alt=""></a></div>
+	<div class='contain'>
+	<p class='title'><a ng-href="{{'#!/home/detail/'+list.id}}"><span class='sort'>{{list.tab|abc}}</span>{{list.title}}</a></p>
+	<span class='reply'>{{list.reply_count}}</span>/<span class='visit'>{{list.visit_count}}</span><span class='last_time'>{{list.create_at|times}}</span></p>
+	</div>
+	</div>
+	<div class='more'><a href='javascript:void(0);' ng-click='more()'>查看更多</a></div>
+	<div ng-show='isshow' class='loadmore'><img src="http://img.zcool.cn/community/013cb15648986a32f87512f6d87dc8.gif" alt=""></div>
+</div>

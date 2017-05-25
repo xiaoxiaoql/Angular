@@ -1,0 +1,18 @@
+<div  class='my_news'>
+		<div class='noread'>
+			<h3>未读消息</h3>
+			<p  ng-click='getnoread()'><span>{{count}}</span><span class='down_more'></span></p>
+			<div class='replaydatai' ng-show='bool'>
+				<ul>
+					<li ng-repeat='news in notReadmsg'>
+						<div><a href='#'><img :src="news.author.avatar_url" alt=""/></a></div>
+						<p><a :href='"#/index/detail/"+news.topic.id'>{{news.reply.content}}</a></p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class='read'>
+			<h3>已读消息</h3>
+			<p>无消息</p>
+		</div>
+	</div>
